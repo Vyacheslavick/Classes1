@@ -1,0 +1,70 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String[] names = {"Война и мир", "1984", "Улисс", "Лолита", "Великий Гетсби"};
+        String[] authors = {"Лев Толстой", "Джордж Оруэлл", "Джеймс Джойс", "Владимир Набоков", "Френсис Скотт"};
+        int[] years = {1867, 1949, 1922, 1955, 1925};
+        Book books[] = new Book[5];
+        for (int i = 0; i < 5; i++) {
+            Book book = new Book();
+            book.name = names[i];
+            book.author = authors[i];
+            book.yearWereWritten = years[i];
+            books[i] = book;
+        }
+        for (int i = 0; i < 5; i++) {
+            Book book = books[i];
+            System.out.println("Название книги: " + book.name);
+            System.out.println("Автор книги :" + book.author);
+            System.out.println("Год издания :" + book.yearWereWritten);
+            System.out.println("");
+            System.out.println("");
+        }
+
+        int numOldestBook = 0;
+        int oldestBook = 3000;
+        for (int i = 0; i < 5; i++) {
+            Book book = books[i];
+            if (oldestBook > book.yearWereWritten) {
+                oldestBook = book.yearWereWritten;
+                numOldestBook = i;
+            }
+        }
+        Book book = books[numOldestBook];
+        System.out.println(String.format("Самая старая книга нависана в %d году", oldestBook));
+        System.out.println("Автор книги : " + book.author);
+        System.out.println("Название книги: " + book.name);
+        System.out.println();
+        System.out.println();
+        System.out.println("Введите желаемого автора (Имя и фамилию):");
+        String search = scan.nextLine();
+        for (int i = 0; i < 5; i++) {
+            book = books[i];
+            if (book.author.equalsIgnoreCase(search)) {
+                System.out.println("Требуемый автор : " + book.author);
+                System.out.println("Его произведение : " + book.name);
+                System.out.println("Год издания : " + book.yearWereWritten);
+                break;
+            }
+        }
+        System.out.println("");
+        System.out.println("Показывать книги написанные после года ...");
+        int timeInterval = scan.nextInt();
+        for (int i = 0; i < 5; i++) {
+            book = books[i];
+            if (book.yearWereWritten > timeInterval) {
+                System.out.println("Автор: " + book.author);
+                System.out.println("Название: " + book.name);
+                System.out.println("Год издания: " + book.yearWereWritten);
+                System.out.println("");
+            }
+        }
+
+
+    }
+}
