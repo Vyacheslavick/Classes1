@@ -68,3 +68,12 @@ public class Main {
 
     }
 }
+
+Class "Book":
+package com.company;
+
+public class Book {
+    String name;
+    String author;
+    int yearWereWritten;
+}
